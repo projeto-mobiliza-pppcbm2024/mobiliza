@@ -12,3 +12,9 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+jwt:
+  public:
+    key: ${JWT_PUBLIC_KEY}
+  private:
+    key: ${JWT_PRIVATE_KEY}

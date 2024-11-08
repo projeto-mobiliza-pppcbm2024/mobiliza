@@ -14,21 +14,22 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 public class Lease {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "id")
-    private Cars Cars;
+    @JoinColumn(name = "car_id")
+    private Cars cars;
 
     @ManyToOne
-    @JoinColumn(name = "id")
-    private Users Users;
+    @JoinColumn(name = "user_id")
+    private Users users;
 
-    @Column(name="INITIAL_DATE", nullable=false, unique=false)
-    private LocalDate initial_date;
+    @Column(nullable=false)
+    private LocalDate initialDate;
 
-    @Column(name="FINAL_DATE", nullable=false, unique=false)
-    private LocalDate final_date;
+    @Column(nullable=false)
+    private LocalDate finalDate;
 }

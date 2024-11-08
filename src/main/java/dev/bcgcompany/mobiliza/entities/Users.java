@@ -1,6 +1,7 @@
 package dev.bcgcompany.mobiliza.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=50, nullable=false, unique=false)
+    @Column(length=50, nullable=false)
     private String name;
 
     @Column(length=50, nullable=false, unique=true)
@@ -25,7 +26,7 @@ public class Users {
     @Column(length=10, nullable=false, unique=true)
     private String cpf;
 
-    @Column(length=10, nullable=false, unique=false)
+    @Column(length=256, nullable=false)
     private String password;
 
     @Column(length=10, nullable=false, unique=true)
@@ -33,4 +34,8 @@ public class Users {
 
     @Column(length=11, nullable=false, unique=true)
     private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 }
