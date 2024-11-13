@@ -1,7 +1,6 @@
 package dev.bcgcompany.mobiliza.controllers;
 
-import dev.bcgcompany.mobiliza.dto.CadastroUsuarioRequestDTO;
-import dev.bcgcompany.mobiliza.dto.UsuarioCadastradoResponseDTO;
+import dev.bcgcompany.mobiliza.controllers.dto.*;
 import dev.bcgcompany.mobiliza.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
