@@ -18,24 +18,21 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=20, nullable=false, unique=true)
+    @Column(nullable=false, unique=true)
     private String name;
-
-    @Column(length=7, nullable=false, unique=true)
-    private String plate;
 
     @Enumerated(EnumType.STRING)
     private Gear gear;
 
-    @Column(length=1, nullable=false)
+    @Column(nullable=false)
     private Integer doors;
 
-    @Column(length=1, nullable=false)
+    @Column(nullable=false)
     private Integer seats;
 
-    @Column(length=11, nullable=false, unique=true)
+    @Column(nullable=false, unique=true)
     private String phone;
 
-    @Column(length=5, nullable=false)
+    @Column(nullable=false)
     private Double price;
 }

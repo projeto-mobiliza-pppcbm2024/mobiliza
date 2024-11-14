@@ -22,7 +22,10 @@ public class CarMaintenance {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @Column(length=6, nullable=false)
+    @Column(nullable=false, unique=true)
+    private String plate;
+
+    @Column(nullable=false)
     private Long km;
 
     @Column(nullable=false)
