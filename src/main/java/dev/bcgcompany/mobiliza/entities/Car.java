@@ -11,7 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Cars {
+@Table(name = "cars")
+public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,15 +27,15 @@ public class Cars {
     @Enumerated(EnumType.STRING)
     private Gear gear;
 
-    @Column(length=1, nullable=false, unique=false)
+    @Column(length=1, nullable=false)
     private Integer doors;
 
-    @Column(length=1, nullable=false, unique=false)
+    @Column(length=1, nullable=false)
     private Integer seats;
 
     @Column(length=11, nullable=false, unique=true)
     private String phone;
 
-    @Column(length=5, nullable=false, unique=false)
+    @Column(length=5, nullable=false)
     private Double price;
 }

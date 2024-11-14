@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "leases")
 public class Lease {
 
     @Id
@@ -21,11 +22,11 @@ public class Lease {
 
     @OneToOne
     @JoinColumn(name = "car_id")
-    private Cars cars;
+    private Car car;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users users;
+    private Users user;
 
     @Column(nullable=false)
     private LocalDate initialDate;
