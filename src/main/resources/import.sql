@@ -1,7 +1,10 @@
 -- Users
-INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (1, 'Admin User', 'admin@example.com', '12345678901', 'admin123', 'AB1234567', '11987654321', 'ADMIN');
-INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (2, 'John Doe', 'john.doe@example.com', '98765432109', 'john123', 'CD9876543', '11912345678', 'BASIC');
-INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (3, 'Jane Smith', 'jane.smith@example.com', '45678912345', 'jane123', 'EF4567890', '11923456789', 'BASIC');
+-- User 1 - admin123
+-- User 2 - john123
+-- User 3 - jane123
+INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (1, 'Admin User', 'admin@example.com', '12345678901', '$2a$10$.PbtOxDAJedSZxv3uWXlS.qk2bMA.BRf0B6j2L9VTYyhiDimYfbYS', 'AB1234567', '11987654321', 'ADMIN');
+INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (2, 'John Doe', 'john.doe@example.com', '98765432109', '$2a$10$REpWLarqlVSt4H.Rtg9PSe9aDjGUZTx79Pu2IvOs7YGCxCQ1E64py', 'CD9876543', '11912345678', 'BASIC');
+INSERT INTO users (id, name, email, cpf, password, cnh, phone, role) VALUES (3, 'Jane Smith', 'jane.smith@example.com', '45678912345', '$2a$10$vUNp5jsyH/7yPzzMb4twhOAXVM3NyseId8Lq084O52utgHh6o1f9i', 'EF4567890', '11923456789', 'BASIC');
 
 -- Cars
 INSERT INTO cars (id, name, gear, doors, seats, phone, price) VALUES (1, 'Toyota Corolla', 'AUTOMATIC', 4, 5, '11911112222', 150.0);
