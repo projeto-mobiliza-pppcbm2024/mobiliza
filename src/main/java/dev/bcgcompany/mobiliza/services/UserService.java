@@ -12,8 +12,13 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UsersRepository userRepository;
-
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserService(UsersRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public UsuarioCadastradoResponseDTO registerUser(CadastroUsuarioRequestDTO cadastroUsuarioRequestDTO) {
 
