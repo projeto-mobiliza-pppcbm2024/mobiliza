@@ -13,7 +13,17 @@ public record CadastroUsuarioRequestDTO(
     @NotBlank(message = "O email é obrigatório")
     String email,
 
+    @NotBlank(message = "O CPF é obrigatório")
+    String cpf,
+
+    @NotBlank(message = "O telefone é obrigatório")
+    String phone,
+
     @NotBlank(message = "A senha é obrigatória")
-    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
-    String senha
+    @Size(min = 8, message = "A senha deve ter no mínimo 6 caracteres")
+    String senha,
+
+    @NotBlank(message = "A CNH é obrigatório")
+    String cnh
+
 ) {}

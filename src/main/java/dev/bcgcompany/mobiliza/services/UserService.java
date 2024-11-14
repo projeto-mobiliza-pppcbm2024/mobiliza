@@ -31,13 +31,20 @@ public class UserService {
         user.setName(cadastroUsuarioRequestDTO.nome());
         user.setEmail(cadastroUsuarioRequestDTO.email());
         user.setPassword(senhaCriptografada);
+        user.setCpf(cadastroUsuarioRequestDTO.cpf());
+        user.setCnh(cadastroUsuarioRequestDTO.cnh());
+        user.setPhone(cadastroUsuarioRequestDTO.phone());
+
 
         Users usuarioSalvo = userRepository.save(user);
 
         return new UsuarioCadastradoResponseDTO(
                 usuarioSalvo.getId(),
                 usuarioSalvo.getName(),
-                usuarioSalvo.getEmail()
+                usuarioSalvo.getEmail(),
+                usuarioSalvo.getCpf(),
+                usuarioSalvo.getPhone(),
+                usuarioSalvo.getCnh()
         );
     }
 }
