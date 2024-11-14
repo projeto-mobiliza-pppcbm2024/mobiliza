@@ -4,13 +4,12 @@ server:
 spring:
   application:
     name: mobiliza
-
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
-
+    initialization-mode: always
   jpa:
     hibernate:
       ddl-auto: create
