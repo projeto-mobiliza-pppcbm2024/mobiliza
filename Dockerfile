@@ -13,10 +13,11 @@ RUN mvn clean install -DskipTests
 # Execution phase
 FROM openjdk:21-jdk-slim
 
-EXPOSE 8080
+EXPOSE ${EXPOSED_PORT}
 
 COPY --from=build /target/mobiliza*.jar mobiliza.jar
 
+ENV EXPOSED_PORT=${EXPOSED_PORT}
 ENV DB_URL=${DB_URL}
 ENV DB_USERNAME=${DB_USERNAME}
 ENV DB_PASSWORD=${DB_PASSWORD}
