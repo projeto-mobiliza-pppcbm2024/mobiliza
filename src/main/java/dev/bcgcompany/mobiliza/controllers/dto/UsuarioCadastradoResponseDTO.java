@@ -6,5 +6,7 @@ public record UsuarioCadastradoResponseDTO(
     String email,
     String cpf,
     String phone,
-    String cnh
+    String cnh,
+    String token,
+    Long tokenExpirationTime
 ) { }
