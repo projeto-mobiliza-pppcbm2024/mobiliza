@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +19,7 @@ import java.time.LocalDate;
 public class Lease {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @OneToOne

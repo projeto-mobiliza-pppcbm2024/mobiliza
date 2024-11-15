@@ -1,12 +1,13 @@
 package dev.bcgcompany.mobiliza.repositories;
 
-import dev.bcgcompany.mobiliza.entities.Cars;
+import dev.bcgcompany.mobiliza.entities.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CarsRepository extends JpaRepository<Cars, Long> {
-    List<Cars> findByName(String name);
+public interface CarRepository extends JpaRepository<Car, Long> {
+
+    List<Car> findByName(String name);
 }

@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,13 +20,13 @@ import lombok.Setter;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(nullable=false, unique=true)
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private Gear gear;
 
     @Column(nullable=false)
@@ -33,6 +38,6 @@ public class Car {
     @Column(nullable=false, unique=true)
     private String phone;
 
-    @Column(nullable=false)
-    private Double price;
+    @Column(nullable=false, precision = 10, scale = 2)
+    private BigDecimal price;
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
+
     List<Payment> findByLeaseId(Long leaseId);
     List<Payment> findByStatus(PaymentStatus status);
 }

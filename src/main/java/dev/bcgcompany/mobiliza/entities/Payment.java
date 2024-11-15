@@ -6,7 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
@@ -14,23 +18,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 public class Payment {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "lease_id", nullable = false)
     private Lease lease;
 
-    @Column(length=7, nullable=false)
-    private Double amount;
+    @Column(nullable=false, precision = 10, scale = 2)
+    private BigDecimal amount;
 
-    @Column(name="PAYMENT_DATE", nullable=false)
+    @Column(nullable=false)
     private LocalDate paymentDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private PaymentMethod paymentMethod;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private PaymentStatus status;
 }
