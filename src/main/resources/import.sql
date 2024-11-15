@@ -31,3 +31,9 @@ INSERT INTO car_maintenance (id, car_id, plate, km, last_maintenance) VALUES (9,
  -- Leases
 INSERT INTO leases (id, car_id, user_id, initial_date, final_date) VALUES (1, 1, 2, '2024-11-10', '2024-11-15');
 INSERT INTO leases (id, car_id, user_id, initial_date, final_date) VALUES (2, 2, 3, '2024-11-11', '2024-11-16');
+
+-- Sequences
+ALTER SEQUENCE users_id_seq RESTART WITH 4;
+ALTER SEQUENCE cars_id_seq RESTART WITH 4;
+ALTER SEQUENCE leases_id_seq RESTART WITH 4;
+ALTER SEQUENCE car_maintenance_id_seq RESTART WITH 4;

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 public record CadastroUsuarioRequestDTO(
 
     @NotBlank(message = "O nome é obrigatório")
-    String nome,
+    String name,
 
     @Email(message = "O email deve ser válido")
     @NotBlank(message = "O email é obrigatório")
@@ -21,7 +21,7 @@ public record CadastroUsuarioRequestDTO(
 
     @NotBlank(message = "A senha é obrigatória")
     @Size(min = 8, message = "A senha deve ter no mínimo 6 caracteres")
-    String senha,
+    String password,
 
     @NotBlank(message = "A CNH é obrigatório")
     String cnh
