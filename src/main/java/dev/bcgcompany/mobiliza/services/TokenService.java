@@ -6,7 +6,11 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 
 import dev.bcgcompany.mobiliza.entities.Users;
+import org.springframework.stereotype.Service;
 
+import static java.time.Instant.now;
+
+@Service
 public class TokenService {
 
     private static final String ISSUER = "mobiliza";

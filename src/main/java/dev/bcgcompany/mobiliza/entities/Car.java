@@ -26,6 +26,9 @@ public class Car {
     @Column(nullable=false, unique=true)
     private String name;
 
+    @Column(nullable = false)
+    private String description;
+
     @Enumerated(STRING)
     private Gear gear;
 
@@ -40,4 +43,7 @@ public class Car {
 
     @Column(nullable=false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @Column(nullable = false)
+    private Boolean rented;
 }

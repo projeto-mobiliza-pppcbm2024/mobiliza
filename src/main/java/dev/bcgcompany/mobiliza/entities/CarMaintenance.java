@@ -29,8 +29,5 @@ public class CarMaintenance {
     private String plate;
 
     @Column(nullable=false)
-    private Long km;
-
-    @Column(nullable=false)
     private LocalDate lastMaintenance;
 }

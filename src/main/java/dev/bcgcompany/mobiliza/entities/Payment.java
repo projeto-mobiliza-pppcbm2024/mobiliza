@@ -27,15 +27,16 @@ public class Payment {
     @JoinColumn(name = "lease_id", nullable = false)
     private Lease lease;
 
+    @Column(nullable = false)
+    private Integer installments;
+
     @Column(nullable=false, precision = 10, scale = 2)
-    private BigDecimal amount;
+    private BigDecimal instalmentAmount;
 
     @Column(nullable=false)
     private LocalDate paymentDate;
 
     @Enumerated(STRING)
+    @Column(nullable = false)
     private PaymentMethod paymentMethod;
-
-    @Enumerated(STRING)
-    private PaymentStatus status;
 }
