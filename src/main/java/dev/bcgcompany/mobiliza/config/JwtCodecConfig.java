@@ -29,7 +29,6 @@ public class JwtCodecConfig {
     private final RSAPublicKey publicKey;
     private final RSAPrivateKey privateKey;
 
-    @SneakyThrows
     public JwtCodecConfig(@Value("${jwt.public.key}") String publicKeyStr,
                           @Value("${jwt.private.key}") String privateKeyStr) {
         this.publicKey = getPublicKeyFromString(publicKeyStr);
@@ -56,14 +55,16 @@ public class JwtCodecConfig {
         return new BCryptPasswordEncoder();
     }
 
-    private RSAPublicKey getPublicKeyFromString(String publicKeyStr) throws Exception {
+    @SneakyThrows
+    private RSAPublicKey getPublicKeyFromString(String publicKeyStr){
         byte[] keyBytes = Base64.getDecoder().decode(publicKeyStr);
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         return (RSAPublicKey) keyFactory.generatePublic(spec);
     }
 
-    private RSAPrivateKey getPrivateKeyFromString(String privateKeyStr) throws Exception {
+    @SneakyThrows
+    private RSAPrivateKey getPrivateKeyFromString(String privateKeyStr) {
         byte[] keyBytes = Base64.getDecoder().decode(privateKeyStr);
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
