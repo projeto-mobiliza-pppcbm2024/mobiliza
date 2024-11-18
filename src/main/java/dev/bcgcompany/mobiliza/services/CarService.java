@@ -8,6 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 @Service
 public class CarService {
 
@@ -18,8 +21,11 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public Page<CarListingResponseDTO> listAllCars(Pageable pageable) {
-        Page<Car> cars = carRepository.findByRentedFalse(pageable);
-        return cars.map(CarListingResponseDTO::new);
+    public Page<CarListingResponseDTO> listAllCars(Pageable pageable, Optional<LocalDate> startDate, Optional<LocalDate> endDate) {
+        return startDate.isPresent() && endDate.isPresent()
+                ? carRepository.findAvailableCars(startDate.get(), endDate.get(), pageable)
+                        .map(CarListingResponseDTO::new)
+                : carRepository.findByRentedFalse(pageable)
+                        .map(CarListingResponseDTO::new);
     }
 }

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("cars")
 public class CarsController {
@@ -25,8 +28,10 @@ public class CarsController {
     @GetMapping
     public ResponseEntity<Page<CarListingResponseDTO>> listCars(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<CarListingResponseDTO> listedCars = carService.listAllCars(PageRequest.of(page, size));
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) Optional<LocalDate> startDate,
+            @RequestParam(required = false) Optional<LocalDate> endDate) {
+        Page<CarListingResponseDTO> listedCars = carService.listAllCars(PageRequest.of(page, size), startDate, endDate);
         return ResponseEntity.ok(listedCars);
     }
 }
