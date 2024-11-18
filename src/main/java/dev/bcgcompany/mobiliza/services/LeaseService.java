@@ -1,51 +1,47 @@
 package dev.bcgcompany.mobiliza.services;
 
-import dev.bcgcompany.mobiliza.dtos.LeaseRequestDTO;
-import dev.bcgcompany.mobiliza.entities.Cars;
+import dev.bcgcompany.mobiliza.controllers.dto.LeaseRequestDTO;
+import dev.bcgcompany.mobiliza.entities.Car;
 import dev.bcgcompany.mobiliza.entities.Lease;
 import dev.bcgcompany.mobiliza.entities.Payment;
+import dev.bcgcompany.mobiliza.entities.Users;
+import dev.bcgcompany.mobiliza.exceptions.EntidadeNaoEncontradaException;
 import dev.bcgcompany.mobiliza.repositories.CarRepository;
 import dev.bcgcompany.mobiliza.repositories.LeaseRepository;
 import dev.bcgcompany.mobiliza.repositories.PaymentRepository;
 import dev.bcgcompany.mobiliza.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class LeaseService {
 
-    @Autowired
-    private UsersRepository usersRepository;
+    private final LeaseRepository leaseRepository;
+    private final PaymentRepository paymentRepository;
+    private final UsersRepository usersRepository;
+    private final CarRepository carRepository;
 
     @Autowired
-    private CarRepository carRepository;
+    public LeaseService(LeaseRepository leaseRepository, PaymentRepository paymentRepository, UsersRepository usersRepository, CarRepository carRepository) {
+        this.leaseRepository = leaseRepository;
+        this.paymentRepository = paymentRepository;
+        this.usersRepository = usersRepository;
+        this.carRepository = carRepository;
+    }
 
-    @Autowired
-    private LeaseRepository leaseRepository;
-
-    @Autowired
-    private PaymentRepository paymentRepository;
-
-    public void processLease(Long userId, LeaseRequestDTO leaseRequestDTO) {
-        var user = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Cars car = carRepository.findById(leaseRequestDTO.car_id())
-                .orElseThrow(() -> new RuntimeException("Car not found"));
-
-        Lease lease = new Lease();
-        lease.setCars(car);
-        lease.setUsers(user);
-        lease.setInitial_date(leaseRequestDTO.start_date());
-        lease.setFinal_date(leaseRequestDTO.final_date());
+    public void confirm(String userId, LeaseRequestDTO leaseRequestDTO) {
+        Users user = usersRepository.findById(Long.valueOf(userId))
+                        .orElseThrow(EntidadeNaoEncontradaException::new);
+        Car car = carRepository.findById(leaseRequestDTO.carId())
+                        .orElseThrow(EntidadeNaoEncontradaException::new);
+        car.setRented(true);
+        Lease lease = leaseRequestDTO.toLease(user, car);
+        Payment payment = leaseRequestDTO.paymentDetails().toPayment();
         leaseRepository.save(lease);
-
-        var paymentDetails = leaseRequestDTO.payment_details();
-        Payment payment = new Payment();
         payment.setLease(lease);
-        payment.setAmount(paymentDetails.installments() * paymentDetails.installment_value());
-        payment.setPaymentDate(paymentDetails.payment_date());
-        payment.setPaymentMethod(paymentDetails.payment_method());
         paymentRepository.save(payment);
     }
 }
